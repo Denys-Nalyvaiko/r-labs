@@ -1,0 +1,67 @@
+# Opisz dane ‘painters’: The Painter's Data of de Piles (Biblioteka {MASS})
+library(MASS)
+
+data(painters)
+
+summary(painters)
+
+# Pokaż szereg rozdzielczy dla 'composition scores’ w ‘painters’
+composition_scores <- painters$Composition
+composition_freq <- table(composition_scores)
+print(composition_freq)
+
+# Szereg rozdzielczy to rozkład liczby wystąpień dla każdej wartości z kolumny 'Composition'.
+# Pokaż histogram danych kolumnowych ‘composition scores’ z danych ‘painters’
+hist(composition_scores, 
+     main="Histogram of Composition Scores", 
+     xlab="Composition Scores", 
+     ylab="Frequency", 
+     col="lightblue", 
+     border="black")
+
+# Opisz różnicę pomiędzy histogram a bar char
+# Histogramy są stosowane do przedstawiania rozkładu zmiennych ciągłych lub danych przedziałowych,
+# Bar chart służy do porównywania kategorii lub dyskretnych wartości, gdzie każda wartość jest przedstawiona osobnym słupkiem
+
+
+# Pokaż pie chart danych ‘composition scores’
+pie(composition_freq, 
+    main="Pie Chart of Composition Scores", 
+    col=rainbow(length(composition_freq)))
+
+# Pokaż dystrybuantę danych “eruption waiting periods’ z danych ‘faithful’
+data(faithful)
+waiting_periods <- faithful$waiting
+ecdf_waiting <- ecdf(waiting_periods)
+print(ecdf_waiting)
+
+# Pokaż graficznie dystrybuantę danych kolumnowych “eruption waiting periods’
+# z danych ‘faithful’
+plot(ecdf_waiting, 
+     main="Empirical CDF of Eruption Waiting Periods", 
+     xlab="Waiting Periods", 
+     ylab="Cumulative Probability", 
+     col="darkgreen", 
+     lwd=2)
+
+# Dla wybranej próbki wylicz miary położenia oraz rozproszenia
+sample_waiting <- faithful$waiting
+mean_waiting <- mean(sample_waiting)
+median_waiting <- median(sample_waiting)
+sd_waiting <- sd(sample_waiting)
+var_waiting <- var(sample_waiting)
+range_waiting <- range(sample_waiting)
+
+cat("Mean:", mean_waiting, "\n")
+cat("Median:", median_waiting, "\n")
+cat("Standard Deviation:", sd_waiting, "\n")
+cat("Variance:", var_waiting, "\n")
+cat("Range:", range_waiting, "\n")
+
+# Dla wybranej próbki pokaż box plot i skomentuj czy istnieją
+# obserwacje odstające
+boxplot(sample_waiting, 
+        main="Box Plot of Eruption Waiting Periods", 
+        ylab="Waiting Periods", 
+        col="lightgreen")
+
